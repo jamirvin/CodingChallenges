@@ -1,11 +1,12 @@
 from unittest import TestCase
-from LinkedList import LinkedList
+
+from Classes.LinkedList import LinkedList
 
 
 class TestLinkedList(TestCase):
     def setUp(self):
         self.dupList = [3, 5, 2, 3, 3, 2, 10]
-        self.removedDups = [1,3,5,2,10]
+        self.removedDups = [1, 3, 5, 2, 10]
         self.linkedList = LinkedList(1)
         self.linkedList.listBuilder(self.dupList)
         array = [1]
@@ -58,13 +59,13 @@ class TestLinkedList(TestCase):
         one = LinkedList(1)
         four = LinkedList(4)
         five = one.sum(four)
-        self.assertEqual(five.data, 5)
+        self.assertListEqual(five.getList(), [5])
 
         num318 = LinkedList(8)
-        num318.listBuilder([1,3])
+        num318.listBuilder([1, 3])
 
         num1094 = LinkedList(4)
-        num1094.listBuilder([9,0,1])
+        num1094.listBuilder([9, 0, 1])
 
         sum = num1094.sum(num318)
-        self.assertEqual(sum.getList(), [2,1,4,1])
+        self.assertListEqual(sum.getList(), [2, 1, 4, 1])
