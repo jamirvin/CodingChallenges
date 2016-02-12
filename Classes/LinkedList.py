@@ -1,24 +1,30 @@
-from Node import Node
+from Classes.Node import Node
 
 
 class LinkedList:
-    def __init__(self, value):
-        self.head = Node(value)
+    def __init__(self, value=None):
+        if value is None:
+            self.head = None
+        else:
+            self.head = Node(value)
 
     def __repr__(self):
         node = self.head
-        nodesData = []
+        node_data = []
         while node is not None:
-            nodesData.append(node.data)
+            node_data.append(node.data)
             node = node.next
-        return "%r" % nodesData
+        return "%r" % node_data
 
     def insertAtEnd(self, value):
-        node = self.head
-        while node.next is not None:
-            node = node.next
+        if self.head is None:
+            self.head = Node(value)
+        else:
+            node = self.head
+            while node.next is not None:
+                node = node.next
 
-        node.next = Node(value)
+            node.next = Node(value)
 
     def listBuilder(self, list):
         for i in list:
@@ -98,8 +104,7 @@ class LinkedList:
 
         node = self.head
         number = number.head
-        result = Node(None)
-        head = result
+        head = LinkedList()
         carry = 0
         while node is not None or number is not None:
             value = carry
@@ -111,11 +116,9 @@ class LinkedList:
                 value += number.data
                 number = number.next
 
-            carry = value / 10
+            carry = value // 10
             value %= 10
 
-            result = Node(value)
-            result = result.next
+            head.insertAtEnd(value)
 
         return head
-
